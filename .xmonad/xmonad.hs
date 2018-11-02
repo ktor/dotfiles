@@ -1,3 +1,7 @@
+{-# LANGUAGE InstanceSigs   #-}
+{-# LANGUAGE PackageImports #-}
+
+import "base" Data.List   (delete)
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.FloatKeys
@@ -10,9 +14,10 @@ import XMonad.Layout.Accordion
 import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
+import XMonad.Layout.ToggleLayouts
 import XMonad.Prompt
 import XMonad.Prompt.Shell
-import XMonad.StackSet(greedyView)
+import XMonad.StackSet(greedyView, Stack(Stack, focus))
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.SpawnOnce
@@ -20,23 +25,24 @@ import qualified Data.Map as M
 
 myKeys x = [
             ((mod1Mask .|. shiftMask, xK_4),      spawn "/usr/bin/scra")
-           , ((mod1Mask .|. controlMask, xK_s),    spawn "systemctl suspend && xsecurelock")
+           , ((mod1Mask .|. controlMask, xK_s),    spawn "xsecurelock & (sleep 1 && systemctl suspend)")
            , ((mod1Mask .|. controlMask, xK_l),    spawn "xsecurelock")
-           , ((0                , 0x1008ff11),     spawn "amixer -c 1 sset Master 4-")
-           , ((0                , 0x1008ff13),     spawn "amixer -c 1 sset Master 4+")
-           , ((0                , 0x1008ff03),     spawn "xbacklight -inc -10%")
-           , ((0                , 0x1008ff02),     spawn "xbacklight -inc +10%")
---            , ((modMask x,               xK_i     ), withFocused (keysResizeWindow (-10,-10) (1,1)))
---            , ((modMask x,               xK_o     ), withFocused (keysResizeWindow (10,10) (1,1)))
+           , ((0, 0x1008FF11), spawn "amixer -q sset Master 2%-")
+           , ((0, 0x1008FF13), spawn "amixer -q sset Master 2%+")
+           , ((0, 0x1008FF12), spawn "amixer set Master toggle")
+           , ((0, 0x1008ff03), spawn "xbacklight -inc -10%")
+           , ((0, 0x1008ff02), spawn "xbacklight -inc +10%")
            ]
 
 newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
 myStartupHook = do
-  setWMName "LG3D"
+  setWMName "LG3D" -- make Java GUI applications work
   spawn "gnome-session --session gnome-flashback-xmonad"
   spawn "nm-applet"
-  spawn "fdpowermon"
+--  spawn "fdpowermon"
+  spawn "wallpaper"
+  spawn "xmobar"
 
 myManageHook = composeAll (
   [ manageHook gnomeConfig
@@ -62,7 +68,7 @@ myManageHook = composeAll (
 main = do
     xmonad $ gnomeConfig {
          manageHook = myManageHook
-       , layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
+       , layoutHook = avoidStruts $ toggleLayouts (noBorders Full) $ smartBorders $ lessBorders MyAmbiguity $ layoutHook defaultConfig
        , startupHook = myStartupHook
        , modMask = mod4Mask
        , keys = newKeys
@@ -72,3 +78,16 @@ main = do
          mconcat [ docksEventHook
                  , handleEventHook defaultConfig ]
        }
+
+data MyAmbiguity = MyAmbiguity deriving (Read, Show)
+
+instance SetsAmbiguous MyAmbiguity where
+    hiddens ::
+      MyAmbiguity ->
+      WindowSet -> Rectangle ->
+      Maybe (Stack Window) ->
+      [(Window, Rectangle)] ->
+      [Window]
+    hiddens _ _ _ Nothing xs                    = fst <$> init xs
+    hiddens _ _ _ (Just (Stack {XMonad.StackSet.focus = x})) xs = delete x (fst <$> xs)
+

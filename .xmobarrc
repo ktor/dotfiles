@@ -3,6 +3,7 @@ Config {
   -- appearance
     font =         "xft:Anonymous Pro:size=10:normal:antialias=true"
     , bgColor =      "black"
+    , alpha = 140
     , fgColor =      "#c4c4c4"
     , position =     OnScreen 1 Top
     , border =       BottomB
