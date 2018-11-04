@@ -1,6 +1,3 @@
-# vi mode
-set -o vi
-
 # history
 HISTFILESIZE=1000000
 HISTSIZE=1000000
