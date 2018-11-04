@@ -31,7 +31,6 @@ my home directory configuration
 * history: ignore duplicates, million entries, ignore: ls,bg,df,history, save
   timestamps
 * prompt: show branch of git repo
-* runs ssh-agent by default
 ## shell Cheatsheet
 * `Esc` - vi mode for bash
 * `$ alert` - notifies when long running command has ended syntax: log_running_command; alert

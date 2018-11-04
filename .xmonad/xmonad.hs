@@ -38,13 +38,14 @@ myKeys x = [
 newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
 myStartupHook = do
+  spawn "xmobar"
+  spawn "stalonetray"
   setWMName "LG3D" -- make Java GUI applications work
   spawn "gnome-session --session gnome-flashback-xmonad"
   spawn "nm-applet"
+  spawn "copyq"
 --  spawn "fdpowermon"
   spawn "wallpaper"
-  spawn "xmobar"
-  spawn "copyq"
 
 myManageHook = composeAll (
   [ manageHook gnomeConfig
