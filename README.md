@@ -3,7 +3,7 @@ my home directory configuration
 
 # X features
 * xmonad configuration
-## Cheatsheet
+## X Cheatsheet
 * `$ terminator` - great terminal with great coding font that supports vim
   powerline and solarized theme for eye peace
 * `$ wallpaper` - command that downloads randomly one of 10 latest bing backgrounds
@@ -19,7 +19,8 @@ my home directory configuration
 * _xmobar_ and _wallpaper_ run on startup
 * better borders management TODO: remove border if windows is shown alone on
   current WS even in xinerama
-## Cheatsheet
+## xmonad Cheatsheet
+* ``Ctrl-``` - toggle copyq, seachable clipboard manager
 * `Ctrl-Alt-S` - secure lock and suspend
 * `Ctrl-Alt-L` - secure lock
 * `Print Screen` - capture selected fragment of a screen with flameshot
@@ -31,7 +32,7 @@ my home directory configuration
   timestamps
 * prompt: show branch of git repo
 * runs ssh-agent by default
-## Cheatsheet
+## shell Cheatsheet
 * `Esc` - vi mode for bash
 * `$ alert` - notifies when long running command has ended syntax: log_running_command; alert
 * `$ tmux` uses vi bindings for copy mode Ctrl-B [, paste in any tmux window with

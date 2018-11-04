@@ -25,6 +25,7 @@ import qualified Data.Map as M
 
 myKeys x = [
             ((0, xK_Print), spawn "flameshot gui")
+           , ((controlMask, 0x60), spawn "copyq toggle") -- CTRL-`
            , ((mod1Mask .|. controlMask, xK_s), spawn "xsecurelock & (sleep 1 && systemctl suspend)")
            , ((mod1Mask .|. controlMask, xK_l), spawn "xsecurelock")
            , ((0, 0x1008FF11), spawn "amixer sset Master 2%- && amixer -c 2 sset Master 2%-")
@@ -43,6 +44,7 @@ myStartupHook = do
 --  spawn "fdpowermon"
   spawn "wallpaper"
   spawn "xmobar"
+  spawn "copyq"
 
 myManageHook = composeAll (
   [ manageHook gnomeConfig
@@ -55,6 +57,7 @@ myManageHook = composeAll (
   , className =? "PillarsOfEternity" --> doIgnore
   , className =? "hl2_linux" --> doIgnore
   , className =? "eu4" --> doIgnore
+  , className =? "copyq" --> doFloat
   , className =? "csgo_linux" --> doIgnore
   , className =? "RocketLeague" --> doIgnore
   , className =? "Gimp"      --> doFloat
