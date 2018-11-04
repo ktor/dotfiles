@@ -24,9 +24,9 @@ import XMonad.Util.SpawnOnce
 import qualified Data.Map as M
 
 myKeys x = [
-            ((mod1Mask .|. shiftMask, xK_4),      spawn "/usr/bin/scra")
-           , ((mod1Mask .|. controlMask, xK_s),    spawn "xsecurelock & (sleep 1 && systemctl suspend)")
-           , ((mod1Mask .|. controlMask, xK_l),    spawn "xsecurelock")
+            ((0, xK_Print), spawn "flameshot gui")
+           , ((mod1Mask .|. controlMask, xK_s), spawn "xsecurelock & (sleep 1 && systemctl suspend)")
+           , ((mod1Mask .|. controlMask, xK_l), spawn "xsecurelock")
            , ((0, 0x1008FF11), spawn "amixer sset Master 2%- && amixer -c 2 sset Master 2%-")
            , ((0, 0x1008FF13), spawn "amixer sset Master 2%+ && amixer -c 2 sset Master 2%+")
            , ((0, 0x1008FF12), spawn "amixer set Master toggle")
