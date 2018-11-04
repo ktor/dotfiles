@@ -23,5 +23,8 @@ my home directory configuration
   current WS even in xinerama
 
 # Shell features
+* Esc - vi mode
 * bash completion - autocompletes command parameters
-* vi mode available on Esc
+* history: ignore duplicates, million entries, ignore: ls,bg,df,history, save
+  timestamps
+* prompt: show branch of git repo
