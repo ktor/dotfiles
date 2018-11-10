@@ -21,6 +21,9 @@ import XMonad.StackSet(greedyView, Stack(Stack, focus))
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.SpawnOnce
+import XMonad.Core (X ,withDisplay ,io)
+import Graphics.X11.Xinerama (getScreenInfo)
+import Graphics.X11.Xlib.Types (Rectangle)
 import qualified Data.Map as M
 
 myKeys x = [
@@ -37,15 +40,19 @@ myKeys x = [
 
 newKeys x  = M.union (keys defaultConfig x) (M.fromList (myKeys x))
 
+xdisplays :: X [Rectangle]
+xdisplays = withDisplay $ io . getScreenInfo
+
 myStartupHook = do
-  spawn "xmobar"
-  spawn "stalonetray"
+  rects <- xdisplays
+  spawnOnce "xmobar"
+  spawnOnce "stalonetray"
   setWMName "LG3D" -- make Java GUI applications work
-  spawn "gnome-session --session gnome-flashback-xmonad"
-  spawn "nm-applet"
-  spawn "copyq"
+  spawnOnce "gnome-session --session gnome-flashback-xmonad"
+  spawnOnce "nm-applet"
+  spawnOnce "copyq"
 --  spawn "fdpowermon"
-  spawn "wallpaper"
+  spawnOnce "wallpaper"
 
 myManageHook = composeAll (
   [ manageHook gnomeConfig

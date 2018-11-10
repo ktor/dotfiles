@@ -1,0 +1,56 @@
+set incsearch
+set surround
+set nocompatible               " choose no compatibility with legacy vi
+set cursorline " highlight the line of the cursor
+set scrolloff=3 " have some context around the current line always on screen
+set list " Show invisible characters
+set history=10000
+set foldlevelstart=20
+let mapleader=","
+" yank/paste to/from system clipboard
+map <leader>y "*y
+map <leader>p "*p
+set clipboard=unnamed
+" new line below/over
+nmap <leader>o o<Esc>
+nmap <leader>O O<Esc>
+" paste lines from unnamed register and fix indentation
+nmap <leader>m gt
+nmap <leader>n gT
+nmap <leader>v "+p
+" autoformatter as in Intellij IDEA
+map <leader>a :Autoformat<CR>
+" windows movements
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
+map <A-h> <C-W>h
+map <A-j> <C-W>j
+map <A-k> <C-W>k
+map <A-l> <C-W>l
+nmap <C-C> <C-W>c
+nmap <C-N> <C-W>n
+nmap <C-S> <Esc>:w<CR>
+" nmap ; :
+" up and down in command line mode
+cmap <C-j> <Down>
+cmap <C-k> <Up>
+set splitright
+set splitbelow
+" disable cursor keys in normal mode
+" map <Left> :echo "no!"<cr>
+" map <Right> :echo "no!"<cr>
+" map <Up> :echo "no!"<cr>
+" map <Down> :echo "no!"<cr>
+" imap <Left> <nop>
+" imap <Right> <nop>
+" imap <Up> <nop>
+" imap <Down> <nop>
+" String to put at the start of lines that have been wrapped.
+set showbreak=>\ 
+"" Searching
+set hlsearch
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
+set gdefault                    " have :s///g flag by default on
