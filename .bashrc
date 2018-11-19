@@ -7,8 +7,8 @@ HISTSIZE=1000000
 HISTCONTROL=ignoreboth
 HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
-shopt -s cmdhist
-PROMPT_COMMAND='history -a'
+shopt -s histappend
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # completion
 if [ -f /etc/bash_completion ]; then
@@ -42,6 +42,17 @@ if [ $(command -v dircolors) ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+fi
+
+if [ $(command -v dircolors) ]; then
+  # Pipe Highlight to less
+  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+  export LESS=" -R"
+  alias less='less -m -N -g -i -J --line-numbers --underline-special'
+  alias more='less'
+
+  # Use "highlight" in place of "cat"
+  alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
 fi
 
 # some more ls aliases

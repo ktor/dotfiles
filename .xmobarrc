@@ -2,10 +2,11 @@ Config {
 
   -- appearance
     font =         "xft:Anonymous Pro:size=10:normal:antialias=true"
+    , additionalFonts = ["xft:Anonymous Pro:size=10:bold:antialias=true"]
     , bgColor =      "black"
-    , alpha = 140
+--    , alpha = 140
     , fgColor =      "#c4c4c4"
-    , position =     OnScreen 1 Top
+    , position =     Top
     , border =       BottomB
     , borderColor =  "#646464"
 
@@ -39,52 +40,51 @@ Config {
     , commands =
 
     -- weather monitor
-    [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
-    ] 36000
+    [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=lightcyan><tempC></fc>°C | <fc=lightcyan><rh></fc>% | <fc=lightcyan><pressure></fc>hPa" ] 36000
 
       -- network activity monitor (dynamic interface resolution)
       , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
       , "--Low"      , "1000"       -- units: B/s
       , "--High"     , "5000"       -- units: B/s
-      , "--low"      , "darkgreen"
-      , "--normal"   , "darkorange"
-      , "--high"     , "darkred"
+      , "--low"      , "lightgreen"
+      , "--normal"   , "orange"
+      , "--high"     , "red"
       ] 10
 
       -- cpu activity monitor
       , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%"
       , "--Low"      , "50"         -- units: %
       , "--High"     , "85"         -- units: %
-      , "--low"      , "darkgreen"
-      , "--normal"   , "darkorange"
-      , "--high"     , "darkred"
+      , "--low"      , "lightgreen"
+      , "--normal"   , "orange"
+      , "--high"     , "red"
       ] 10
 
       -- cpu core temperature monitor
       , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
       , "--Low"      , "70"        -- units: °C
       , "--High"     , "80"        -- units: °C
-      , "--low"      , "darkgreen"
-      , "--normal"   , "darkorange"
-      , "--high"     , "darkred"
+      , "--low"      , "lightgreen"
+      , "--normal"   , "orange"
+      , "--high"     , "red"
       ] 50
 
       -- memory usage monitor
       , Run Memory         [ "--template" ,"Mem: <usedratio>%"
       , "--Low"      , "20"        -- units: %
       , "--High"     , "90"        -- units: %
-      , "--low"      , "darkgreen"
-      , "--normal"   , "darkorange"
-      , "--high"     , "darkred"
+      , "--low"      , "lightgreen"
+      , "--normal"   , "orange"
+      , "--high"     , "red"
       ] 10
 
       -- battery monitor
       , Run Battery        [ "--template" , "Batt: <acstatus>"
       , "--Low"      , "10"        -- units: %
       , "--High"     , "80"        -- units: %
-      , "--low"      , "darkred"
-      , "--normal"   , "darkorange"
-      , "--high"     , "darkgreen"
+      , "--low"      , "red"
+      , "--normal"   , "orange"
+      , "--high"     , "lightgreen"
 
       , "--" -- battery specific options
       -- discharging status
@@ -97,11 +97,12 @@ Config {
 
       -- time and date indicator
       --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-      , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+      , Run Date           "<fc=yellow>%F (%a) %T</fc>" "date" 10
+      , Run Brightness [ "-t", "Screen: %%%" ] 30
 
       -- keyboard layout indicator
-      , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-      , ("us"         , "<fc=#8B0000>US</fc>")
+      , Run Kbd            [ ("sk" , "<fc=white>S</fc><fc=lightblue>V</fc><fc=red>K</fc>")
+      , ("pl"         , "<fn=1><fc=white>P</fc><fc=red>L</fc></fn>")
       ]
       ]
 }
