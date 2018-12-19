@@ -1,2 +1,2 @@
-#!/bin/sh
-~/development/tools/idea-IU-182.4892.20/bin/idea.sh
+#!/usr/bin/env bash
+~/development/tools/idea-IU-183.4284.148/bin/idea.sh

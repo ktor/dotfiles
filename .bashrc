@@ -1,5 +1,8 @@
 # path
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="$HOME/development/maven/apache-maven-3.6.0/bin:$PATH"
 
 # history
 HISTFILESIZE=1000000
@@ -8,7 +11,7 @@ HISTCONTROL=ignoreboth
 HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 shopt -s histappend
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 
 # completion
 if [ -f /etc/bash_completion ]; then
@@ -44,7 +47,7 @@ if [ $(command -v dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
-if [ $(command -v dircolors) ]; then
+if [ $(command -v highlight) ]; then
   # Pipe Highlight to less
   export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
   export LESS=" -R"
@@ -52,13 +55,19 @@ if [ $(command -v dircolors) ]; then
   alias more='less'
 
   # Use "highlight" in place of "cat"
-  alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+  alias catcolor="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+  function curljson() {
+    curl $1 | python -m json.tool | highlight --out-format xterm256 --syntax json --line-numbers --quiet --force --style github;
+  }
 fi
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# git aliases
+alias commit-merge='git commit -e -F "$(git rev-parse --git-dir)/MERGE_MSG"'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

@@ -1,0 +1,2 @@
+MAVEN_OPTS="-Xmx512m -Djavax.net.ssl.trustStore=/home/ktor/.keystore \
+                     -Djavax.net.ssl.trustStorePassword=123456"

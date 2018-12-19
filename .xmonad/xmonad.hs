@@ -27,9 +27,7 @@ import Graphics.X11.Xlib.Types (Rectangle)
 import qualified Data.Map as M
 
 import "xmonad-contrib" XMonad.Layout.Spacing
-    ( SmartSpacingWithEdge
-    , smartSpacingWithEdge
-    )
+    ( Spacing, spacingRaw )
 import "xmonad-contrib" XMonad.Layout.LayoutModifier (ModifiedLayout)
 import "xmonad-contrib" XMonad.Layout.Decoration
     ( Decoration
@@ -48,8 +46,9 @@ myKeys x = [
             -- ((0, xK_Print), spawn "flameshot gui")
             ((0, xK_Print), spawn "shutter -s")
            , ((controlMask, 0x60), spawn "copyq toggle") -- CTRL-`
-           , ((mod4Mask .|. controlMask, xK_s), spawn "xsecurelock & (sleep 1 && systemctl suspend)")
-           , ((mod4Mask .|. controlMask, xK_l), spawn "xsecurelock")
+           , ((mod4Mask .|. controlMask, xK_s), spawn "env XSECURELOCK_NO_COMPOSITE=1 xsecurelock & (sleep 1 && systemctl suspend)")
+           , ((mod4Mask .|. controlMask, xK_l), spawn "env XSECURELOCK_NO_COMPOSITE=1 xsecurelock")
+
            , ((mod4Mask .|. controlMask, xK_v), spawn "keepass --auto-type")
            , ((0, 0x1008FF11), spawn "amixer sset Master 2%- && amixer -c 2 sset Master 2%-")
            , ((0, 0x1008FF13), spawn "amixer sset Master 2%+ && amixer -c 2 sset Master 2%+")
@@ -65,19 +64,18 @@ xdisplays = withDisplay $ io . getScreenInfo
 
 myStartupHook = do
   rects <- xdisplays
-  spawnOnce "xcape" -- xcape to use CTRL as ESC when pressed alone
-  spawnOnce "unclutter -jitter=20" -- hide cursor after X seconds idle
-  spawnOnce "/home/ktor/bin/wallpaper" -- download bing picture of a day and set as wallpaper with feh
-  -- spawnOnce "compton -b --config /home/ktor/.compton.conf" -- window shadows
-  spawnOnce  "dunst -follow keyboard -force_xinerama" -- Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.  
   spawnOnce "xmobar"
   spawnOnce "stalonetray"
   setWMName "LG3D" -- make Java GUI applications work
-  spawnOnce "gnome-session --session gnome-flashback-xmonad"
   spawnOnce "nm-applet"
   spawnOnce "copyq"
 --  spawn "fdpowermon"
   spawnOnce "wallpaper"
+  spawnOnce "xcape" -- xcape to use CTRL as ESC when pressed alone
+  spawnOnce "unclutter --jitter=20" -- hide cursor after X seconds idle
+  spawnOnce "/home/ktor/bin/wallpaper" -- download bing picture of a day and set as wallpaper with feh
+  -- spawnOnce "compton -b --config /home/ktor/.compton.conf" -- window shadows
+  spawnOnce  "dunst -follow keyboard -force_xinerama" -- Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.  
 
 myManageHook = composeAll (
   [ manageHook gnomeConfig
@@ -104,7 +102,7 @@ myManageHook = composeAll (
 main = do
     xmonad $ defaultConfig {
          manageHook = myManageHook
-       , layoutHook = smartBorders $ avoidStruts myLayoutHook
+       , layoutHook = smartBorders $ myLayoutHook
        , startupHook = myStartupHook
        , borderWidth = 1
        , modMask = mod4Mask
@@ -113,21 +111,8 @@ main = do
        , handleEventHook = fullscreenEventHook <> docksEventHook
        }
 
-myLayoutHook ::
-    ModifiedLayout
-        (ConfigurableBorder MyAmbiguity)
-        (ModifiedLayout
-            SmartSpacingWithEdge
-            (Choose
-                (Choose Tall (Choose (Mirror Tall) Full))
-                (ModifiedLayout
-                    (Decoration SimpleDecoration DefaultShrinker)
-                    (ModifiedLayout
-                        MouseResize
-                        (ModifiedLayout WindowArranger SimpleFloat)))))
-        Window
 
-myLayoutHook = lessBorders MyAmbiguity $ smartSpacingWithEdge 4 $ layoutHook defaultConfig ||| simpleFloat
+myLayoutHook = lessBorders MyAmbiguity $ layoutHook defaultConfig ||| simpleFloat
 
 data MyAmbiguity = MyAmbiguity deriving (Read, Show)
 
