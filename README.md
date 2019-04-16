@@ -28,6 +28,7 @@ my home directory configuration
 * `Print Screen` - capture selected fragment of a screen
 
 # Shell features
+* excellent bash history extension [hsrt][1]
 * _ls, dir, vdir, grep, fgrep, egrep_ are colorfull
 * bash completion - autocompletes command parameters
 * syntax highlighting in less, more and cat
@@ -53,3 +54,4 @@ my home directory configuration
 * `$ commit-merge` calls git commit with default merge commit message as a
   template that you can edit before commiting
 
+[1]:https://github.com/dvorka/hstr
