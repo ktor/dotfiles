@@ -1,0 +1,3 @@
+[submodule ".local/share/git-plus"]
+	path = .local/share/git-plus
+	url = git@github.com:tkrajina/git-plus.git
