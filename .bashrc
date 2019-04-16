@@ -3,12 +3,15 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH="$HOME/development/maven/apache-maven-3.6.0/bin:$PATH"
+export PATH="$HOME/.local/share/git-plus/:$PATH"
+
+EDITOR="vim"
 
 # history
-HISTFILESIZE=1000000
-HISTSIZE=1000000
-HISTCONTROL=ignoreboth
-HISTIGNORE='ls:bg:fg:history'
+HISTFILESIZE=-1
+HISTSIZE=-1
+HISTCONTROL=ignoreboth:erasedups
+HISTIGNORE='ls:bg:fg:history:ps:top:cd:exit:man'
 HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
@@ -49,9 +52,9 @@ fi
 
 if [ $(command -v highlight) ]; then
   # Pipe Highlight to less
-  export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
-  export LESS=" -R"
-  alias less='less -m -N -g -i -J --line-numbers --underline-special'
+  # export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+  # export LESS=" -R"
+  alias lesscolor='less -m -N -g -i -J --line-numbers --underline-special'
   alias more='less'
 
   # Use "highlight" in place of "cat"
@@ -75,3 +78,12 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # run ssh agent
 # eval `ssh-agent -s`
+
+# add this configuration to ~/.bashrc
+export HH_CONFIG=hicolor         # get more colors
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "hstr -- \C-j"'; fi
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "hstr -k \C-j"'; fi
+

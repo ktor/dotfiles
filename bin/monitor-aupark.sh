@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-xrandr --output eDP1 --auto --output HDMI2 --auto --left-of VGA1 --output VGA1 --left-of eDP1 --primary
+xrandr \
+  --output HDMI2 --auto \
+  --output DP1 --auto --right-of HDMI2 --primary \
+  --output eDP1 --auto --right-of DP1
+restart-apps.sh

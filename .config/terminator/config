@@ -1,5 +1,9 @@
 [global_config]
+  borderless = True
+  inactive_color_offset = 0.902777777778
+  window_state = fullscreen
 [keybindings]
+  help = <Primary><Shift><Alt>F1
 [layouts]
   [[default]]
     [[[child1]]]
