@@ -33,3 +33,4 @@
 !bin/patch_node.sh
 !bin/wallpaper
 !.local/share/git-plus
+!.ripgreprc
