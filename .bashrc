@@ -8,13 +8,19 @@ export PATH="$HOME/.local/share/git-plus/:$PATH"
 EDITOR="vim"
 
 # history
-HISTFILESIZE=-1
-HISTSIZE=-1
-HISTCONTROL=ignoreboth:erasedups
-HISTIGNORE='ls:bg:fg:history:ps:top:cd:exit:man'
-HISTTIMEFORMAT='%F %T '
+export HISTFILESIZE=-1
+export HISTSIZE=-1
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE='ls:bg:fg:history:ps:top:cd:exit:man'
+export HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
+export HH_CONFIG=hicolor         # get more colors
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "hstr -- \C-j"'; fi
+# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
+if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "hstr -k \C-j"'; fi
 
 # completion
 if [ -f /etc/bash_completion ]; then
@@ -79,11 +85,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # run ssh agent
 # eval `ssh-agent -s`
 
-# add this configuration to ~/.bashrc
-export HH_CONFIG=hicolor         # get more colors
-export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
-# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
-if [[ $- =~ .*i.* ]]; then bind '"\C-r": "hstr -- \C-j"'; fi
-# if this is interactive shell, then bind 'kill last command' to Ctrl-x k
-if [[ $- =~ .*i.* ]]; then bind '"\C-xk": "hstr -k \C-j"'; fi
-
+# add ripgrep configuration
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
