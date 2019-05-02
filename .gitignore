@@ -2,11 +2,17 @@
 *
 
 !.bashrc
+!.config
+!.config/procps
 !.config/procps/toprc
+!.config
+!.config/terminator
 !.config/terminator/config
 !.ghci
 !.gitconfig
 !.gitignore
+!.idea-config
+!.idea-config/config
 !.idea-config/config/idea.jdk
 !.idea-config/config/idea.properties
 !.idea-config/config/idea64.vmoptions
@@ -14,13 +20,16 @@
 !.inputrc
 !.mavenrc
 !.npmrc
+i.ssh
 !.ssh/config
 !.stalonetrayrc
 !.tmux.conf
 !.xmobarrc
+!.xmonad
 !.xmonad/xmonad.hs
 !LICENSE
 !README.md
+!bin
 !bin/clean_maven_local_repository.sh
 !bin/dotfiles-pull.sh
 !bin/idea
@@ -32,5 +41,7 @@
 !bin/patch_gradle.sh
 !bin/patch_node.sh
 !bin/wallpaper
+!.local
+!.local/share
 !.local/share/git-plus
 !.ripgreprc
