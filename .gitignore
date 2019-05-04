@@ -45,3 +45,4 @@ i.ssh
 !.local/share
 !.local/share/git-plus
 !.ripgreprc
+!.vimium-options.json
