@@ -4,11 +4,13 @@ email = kruszewsky@gmail.com
   sslCAInfo=~/development/projects/o2/certifikat/ca.pem
 sslVerify = false
 [core]
-autocrlf = true
+editor = vim
 excludesfile = ~/Documents/gitignore_global.txt
+filemode = false
+keepbackups = false
+prompt = false
 trustctime = false
-	editor = vim
-	filemode = false
+trustexitcode = false
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
@@ -24,11 +26,6 @@ default = matching
 ui = true
 [credential]
 helper = cache
-[core]
-autocrlf = input
-keepbackups = false
-prompt = false
-trustexitcode = false
 [alias]
 last = log -1 --stat
 cp = cherry-pick
