@@ -126,8 +126,8 @@ myShortcutKeyMap =
            , ((0,         xF86XK_AudioLowerVolume)  , spawn "amixer sset Master 2%- && amixer -c 2 sset Master 2%-")
            , ((0,         xF86XK_AudioRaiseVolume)  , spawn "amixer sset Master 2%+ && amixer -c 2 sset Master 2%+")
            , ((0,         xF86XK_AudioMute)         , spawn "amixer set Master toggle")
-           , ((0,         xF86XK_MonBrightnessDown) , spawn "xbacklight -inc -10%")
-           , ((0,         xF86XK_MonBrightnessUp)   , spawn "xbacklight -inc +10%")
+           , ((0,         xF86XK_MonBrightnessDown) , spawn "xbacklight -dec 10")
+           , ((0,         xF86XK_MonBrightnessUp)   , spawn "xbacklight -inc 10")
            , ((0,         xF86XK_Display)           , rescreenExt)
            , ((shiftMask, xF86XK_Display)           , rescreenMir)
            ]
