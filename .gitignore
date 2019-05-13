@@ -32,7 +32,7 @@ i.ssh
 !bin
 !bin/clean_maven_local_repository.sh
 !bin/dotfiles-pull.sh
-!bin/idea
+!bin/intellij-idea
 !bin/monitor-aupark.sh
 !bin/monitor-home.sh
 !bin/monitor-onthego.sh
