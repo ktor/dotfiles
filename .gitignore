@@ -1,6 +1,7 @@
 # Ignore everything
 *
 
+!q_qwerty.txt
 !.bashrc
 !.config
 !.config/procps
