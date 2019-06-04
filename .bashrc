@@ -77,6 +77,7 @@ alias l='ls -CF'
 
 # git aliases
 alias commit-merge='git commit -e -F "$(git rev-parse --git-dir)/MERGE_MSG"'
+alias bc='bcompare'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

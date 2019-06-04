@@ -16,9 +16,9 @@ trustexitcode = false
 	smudge = git lfs smudge %f
 	required = true
 [difftool "sourcetree"]
-	cmd = 'C:/Program Files (x86)/Beyond Compare 4/BComp.exe' \"$LOCAL\" \"$REMOTE\"
+	cmd = 'bcompare' \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
-	cmd = 'C:/Program Files (x86)/Beyond Compare 4/BComp.exe' \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	cmd = 'bcompare' \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 trustExitCode = true
 [push]
 default = matching
@@ -39,3 +39,5 @@ dc = diff --cached
 lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
 [init]
 	templatedir = ~/.git_template
+[merge]
+	tool = bc
