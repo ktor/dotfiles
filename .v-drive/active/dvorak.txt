@@ -1,0 +1,3 @@
+[kp-rwin]>[kp-ralt]
+[ralt]>[rwin]
+[kp-ralt]>[kp-rwin]

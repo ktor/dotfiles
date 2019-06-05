@@ -1,0 +1,4 @@
+[kp-rwin]>[kp-ralt]
+[rwin]>[ralt]
+[lctrl]>[rwin]
+[kp-lctrl]>[kp-rwin]

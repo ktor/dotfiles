@@ -1,7 +1,8 @@
 # Ignore everything
 *
 
-!q_qwerty.txt
+!.v-drive
+!.v-drive/**
 !.bashrc
 !.config
 !.config/procps
