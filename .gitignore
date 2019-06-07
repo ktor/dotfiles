@@ -1,13 +1,13 @@
 # Ignore everything
 *
 
-!.v-drive
-!.v-drive/**
 !.bashrc
 !.config
+!.config
+!.config/alacritty
+!.config/alacritty/alacritty.yml
 !.config/procps
 !.config/procps/toprc
-!.config
 !.config/terminator
 !.config/terminator/config
 !.ghci
@@ -20,12 +20,18 @@
 !.idea-config/config/idea64.vmoptions
 !.ideavimrc
 !.inputrc
+!.local
+!.local/share
+!.local/share/git-plus
 !.mavenrc
 !.npmrc
-i.ssh
+!.ripgreprc
 !.ssh/config
 !.stalonetrayrc
 !.tmux.conf
+!.v-drive
+!.v-drive/**
+!.vimium-options.json
 !.xmobarrc
 !.xmonad
 !.xmonad/xmonad.hs
@@ -43,8 +49,4 @@ i.ssh
 !bin/patch_gradle.sh
 !bin/patch_node.sh
 !bin/wallpaper
-!.local
-!.local/share
-!.local/share/git-plus
-!.ripgreprc
-!.vimium-options.json
+i.ssh
