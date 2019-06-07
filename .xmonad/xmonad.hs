@@ -37,7 +37,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myTerminal :: String
-myTerminal = "terminator"
+myTerminal = "alacritty"
 
 fconsoleName :: String
 fconsoleName = "fconsole"
