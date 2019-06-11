@@ -56,6 +56,9 @@ if [ $(command -v dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if [ $(command -v bat) ]; then
+  alias bat='bat --theme GitHub'
+fi
 if [ $(command -v highlight) ]; then
   # Pipe Highlight to less
   # export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
@@ -69,6 +72,7 @@ if [ $(command -v highlight) ]; then
     curl $1 | python -m json.tool | highlight --out-format xterm256 --syntax json --line-numbers --quiet --force --style github;
   }
 fi
+
 
 # some more ls aliases
 alias ll='ls -alF'
