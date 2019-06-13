@@ -9,12 +9,10 @@ EDITOR="vim"
 
 # history
 export HISTFILESIZE=-1
-export HISTSIZE=-1
+export HISTSIZE=${HISTFILESIZE}
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='ls:bg:fg:history:ps:top:cd:exit:man'
-export HISTTIMEFORMAT='%F %T '
 shopt -s histappend
-export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 export HH_CONFIG=hicolor         # get more colors
 export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
 # if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
