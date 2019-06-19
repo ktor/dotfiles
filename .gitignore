@@ -1,6 +1,8 @@
 # Ignore everything
 *
 
+!.freemind
+!.freemind/user.properties
 !.bashrc
 !.config
 !.config
