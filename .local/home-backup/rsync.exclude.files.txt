@@ -1,0 +1,22 @@
+/ktor/.IntelliJIdea2019.1/system/caches
+/ktor/.IntelliJIdea2019.1/system/index
+/ktor/.blade/cache
+/ktor/.cache
+/ktor/.config/Slack/Cache
+/ktor/.config/chromium/Default/Service Worker/CacheStorage
+/ktor/.config/chromium/Default/Service Worker/ScriptCache
+/ktor/.config/chromium/ShaderCache/GPUCache
+/ktor/.config/google-chrome/Default/Application Cache
+/ktor/.gradle/caches
+/ktor/.gradle/wrapper/dists
+/ktor/.liferay
+/ktor/.m2/repository
+/ktor/.npm/_cacache
+/ktor/.recoll
+/ktor/.sonar
+/ktor/.stack
+/ktor/Downloads
+/ktor/Music
+/ktor/development/projects/**/node_modules
+/ktor/development/projects/**/target
+/ktor/temp

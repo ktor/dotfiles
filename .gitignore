@@ -1,8 +1,6 @@
 # Ignore everything
 *
 
-!.freemind
-!.freemind/user.properties
 !.bashrc
 !.config
 !.config
@@ -12,6 +10,8 @@
 !.config/procps/toprc
 !.config/terminator
 !.config/terminator/config
+!.freemind
+!.freemind/user.properties
 !.ghci
 !.gitconfig
 !.gitignore
@@ -23,6 +23,8 @@
 !.ideavimrc
 !.inputrc
 !.local
+!.local/home-backup
+!.local/home-backup/rsync.exclude.files.txt
 !.local/share
 !.local/share/git-plus
 !.mavenrc
@@ -40,6 +42,7 @@
 !LICENSE
 !README.md
 !bin
+!bin/daily-home-backup.sh
 !bin/clean_maven_local_repository.sh
 !bin/dotfiles-pull.sh
 !bin/intellij-idea
