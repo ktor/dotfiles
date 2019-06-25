@@ -3,7 +3,6 @@
 
 !.bashrc
 !.config
-!.config
 !.config/alacritty
 !.config/alacritty/alacritty.yml
 !.config/procps
@@ -28,6 +27,8 @@
 !.local/share
 !.local/share/git-plus
 !.mavenrc
+!.mitmproxy
+!.mitmproxy/config.yaml
 !.npmrc
 !.ripgreprc
 !.ssh/config
@@ -42,8 +43,8 @@
 !LICENSE
 !README.md
 !bin
-!bin/daily-home-backup.sh
 !bin/clean_maven_local_repository.sh
+!bin/daily-home-backup.sh
 !bin/dotfiles-pull.sh
 !bin/intellij-idea
 !bin/monitor-aupark.sh

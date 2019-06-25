@@ -1,0 +1,4 @@
+block_global: false
+console_palette: solarized_light
+onboarding: false
+ssl_insecure: true
