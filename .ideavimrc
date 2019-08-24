@@ -7,8 +7,6 @@ set history=10000
 set foldlevelstart=20
 let mapleader=","
 
-" yank/paste to/from system clipboard
-set clipboard=unnamed
 
 " new line below/over
 nmap <leader>o o<Esc>
@@ -40,7 +38,7 @@ set splitright
 set splitbelow
 
 " String to put at the start of lines that have been wrapped.
-set showbreak=>\ 
+set showbreak=>\
 
 "" Searching
 set hlsearch
@@ -51,3 +49,7 @@ set gdefault                    " have :s///g flag by default on
 "" Plugins emulation
 set multiple-cursors            " enable multiple cursors from version 0.50
 set surround
+
+" yank/paste to/from system clipboard
+set clipboard=unnamed
+set clipboard+=ideaput
