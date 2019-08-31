@@ -347,6 +347,12 @@ live_config_reload: true
 #  program: /bin/bash
 #  args:
 #    - --login
+shell:
+  program: bash
+  args:
+    - --login
+    - -c
+    - 'tmux new-session -A -s TMUX'
 
 # Startup directory
 #
