@@ -8,8 +8,8 @@ export PATH="$HOME/.local/share/git-plus/:$PATH"
 EDITOR="vim"
 
 # history
-export HISTFILESIZE=-1
-export HISTSIZE=${HISTFILESIZE}
+export HISTFILESIZE='infinity'
+export HISTSIZE='infinity'
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE='ls:bg:fg:history:ps:top:cd:exit:man'
 shopt -s histappend
