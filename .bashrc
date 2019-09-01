@@ -25,6 +25,8 @@ if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
 
+source ~/bin/z.sh
+
 # prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
 __prompt_color="1;32m"

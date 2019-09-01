@@ -43,6 +43,7 @@
 !LICENSE
 !README.md
 !bin
+!bin/z.sh
 !bin/weather.sh
 !bin/clean_maven_local_repository.sh
 !bin/daily-home-backup.sh
