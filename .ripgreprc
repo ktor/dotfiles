@@ -10,3 +10,7 @@
 
 # Don't respect .gitignore files in parent directories
 --no-ignore-parent
+
+# file matching rules
+--type-add
+vm:*.vm

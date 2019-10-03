@@ -2,7 +2,6 @@
 name = Pawel Kruszewski
 email = kruszewsky@gmail.com
   sslCAInfo=~/development/projects/o2/certifikat/ca.pem
-sslVerify = false
 [core]
 editor = vim
 excludesfile = ~/Documents/gitignore_global.txt
