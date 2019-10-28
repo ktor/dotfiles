@@ -1,6 +1,7 @@
 # Ignore everything
 *
-
+!.asciidoc/
+!.asciidoc/asciidoc.conf
 !.bashrc
 !.config
 !.config/alacritty
@@ -31,6 +32,7 @@
 !.mitmproxy/config.yaml
 !.npmrc
 !.ripgreprc
+!.ssh
 !.ssh/config
 !.stalonetrayrc
 !.tmux.conf
@@ -43,8 +45,6 @@
 !LICENSE
 !README.md
 !bin
-!bin/z.sh
-!bin/weather.sh
 !bin/clean_maven_local_repository.sh
 !bin/daily-home-backup.sh
 !bin/dotfiles-pull.sh
@@ -57,4 +57,5 @@
 !bin/patch_gradle.sh
 !bin/patch_node.sh
 !bin/wallpaper
-i.ssh
+!bin/weather.sh
+!bin/z.sh
