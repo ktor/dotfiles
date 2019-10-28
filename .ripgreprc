@@ -14,3 +14,15 @@
 # file matching rules
 --type-add
 vm:*.vm
+
+--type-add
+properties:*.properties
+
+--type-add
+templates:*.vm, *.html, *.xhtml, *.jsp
+
+--type-add
+jsp:*.jsp
+
+--type-add
+html: *.ejs, *.htm, *.html, *.xhtml
