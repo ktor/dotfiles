@@ -9,6 +9,7 @@ import XMonad.Actions.WindowBringer (gotoMenu)
 import XMonad.Config.Gnome
 import XMonad.Core (X ,withDisplay ,io)
 import XMonad.Util.EZConfig(removeKeys, additionalKeys)
+import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Layout.NoBorders
@@ -46,6 +47,10 @@ floatingConsole :: String
 floatingConsole =  myTerminal
                 ++ "-c " ++ fconsoleName
 
+myLogHook :: X ()
+myLogHook = fadeInactiveLogHook fadeAmount
+    where fadeAmount = 1
+
 main :: IO ()
 main = do
     xmonad $ defaultConfig {
@@ -55,6 +60,7 @@ main = do
        , workspaces = myWorkspaces
        , handleEventHook = fullscreenEventHook <> docksEventHook
        , manageHook = myManageHook
+       , logHook = myLogHook
        , layoutHook = smartBorders $ myLayoutHook
        , startupHook = myStartupHook
        }
