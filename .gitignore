@@ -49,10 +49,7 @@
 !bin/daily-home-backup.sh
 !bin/dotfiles-pull.sh
 !bin/intellij-idea
-!bin/monitor-aupark.sh
-!bin/monitor-home.sh
-!bin/monitor-onthego.sh
-!bin/monitor-vysoka.sh
+!bin/monitor-*.sh
 !bin/nixos-patching-common.sh
 !bin/patch_gradle.sh
 !bin/patch_node.sh
