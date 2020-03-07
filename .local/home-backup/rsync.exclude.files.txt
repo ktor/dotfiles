@@ -1,5 +1,5 @@
-/ktor/.IntelliJIdea2019.1/system/caches
-/ktor/.IntelliJIdea2019.1/system/index
+/ktor/.IntelliJIdea*/system/caches
+/ktor/.IntelliJIdea*/system/index
 /ktor/.blade/cache
 /ktor/.cache
 /ktor/.config/Slack/Cache
