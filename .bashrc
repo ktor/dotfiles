@@ -73,6 +73,12 @@ if [ $(command -v highlight) ]; then
   }
 fi
 
+# navigation aliases
+alias -='cd -'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
 
 # some more ls aliases
 alias ll='ls -alF'
