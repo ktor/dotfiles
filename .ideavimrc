@@ -50,6 +50,7 @@ set gdefault                    " have :s///g flag by default on
 set multiple-cursors            " enable multiple cursors from version 0.50
 set surround
 
-" yank/paste to/from system clipboard
-set clipboard=unnamed
+"" integrate with system clipboard
+set clipboard+=unnamedplus
+set clipboard+=unnamed
 set clipboard+=ideaput
