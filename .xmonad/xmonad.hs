@@ -53,7 +53,7 @@ myLogHook = fadeInactiveLogHook fadeAmount
 
 main :: IO ()
 main = do
-    xmonad $ defaultConfig {
+    xmonad $ def {
          terminal = myTerminal
        , borderWidth = 1
        , modMask = myModMask
@@ -125,8 +125,8 @@ myShortcutKeyMap =
            [ ((0, xK_Print), spawn "shutter -s")
            , ((controlMask, 0x60), spawn "copyq toggle") -- CTRL-`
 
-           , ((mod4Mask .|. controlMask, xK_s), spawn "env XSECURELOCK_NO_COMPOSITE=1 xsecurelock & (sleep 1 && systemctl suspend)")
-           , ((mod4Mask .|. controlMask, xK_l), spawn "env XSECURELOCK_NO_COMPOSITE=1 xsecurelock")
+           , ((mod4Mask .|. controlMask, xK_s), spawn "alock & (sleep 1 && systemctl suspend)")
+           , ((mod4Mask .|. controlMask, xK_l), spawn "alock")
            , ((mod4Mask .|. controlMask, xK_v), spawn "keepass --auto-type")
 
            , ((0,         xF86XK_AudioLowerVolume)  , spawn "amixer sset Master 2%- && amixer -c 2 sset Master 2%-")
@@ -223,6 +223,7 @@ myManageHook = composeAll (
   -- , className =? "copyq" --> doShift (gets (W.currentTag . windowset)
   , className =? "copyq" --> doFloat
   , className =? floatingConsole --> doFloat
+  , className =? "microsoft teams - preview" --> doFloat
   , className =? "Gimp"      --> doFloat
   , className =? "Vncviewer" --> doFloat
   , className =? "MainThrd" --> doFloat
