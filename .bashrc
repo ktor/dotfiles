@@ -1,8 +1,9 @@
 # path
+export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.npm-packages/bin:$PATH"
-export PATH="$HOME/development/maven/apache-maven-3.6.0/bin:$PATH"
+export PATH="$HOME/development/maven/apache-maven-3.6.3/bin:$PATH"
 export PATH="$HOME/.local/share/git-plus/:$PATH"
 
 EDITOR="vim"
@@ -74,7 +75,6 @@ if [ $(command -v highlight) ]; then
 fi
 
 # navigation aliases
-alias -='cd -'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -98,3 +98,11 @@ alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal ||
 
 # add ripgrep configuration
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+function check_gzip_compression {
+  curl -s -I -H 'Accept-Encoding: gzip' $1 |grep -i "Content-Encoding"
+}
+
+function check_compression {
+  curl -s -I -H 'Accept-Encoding: br,gzip,deflate' $1 |grep -i "Content-Encoding"
+}
