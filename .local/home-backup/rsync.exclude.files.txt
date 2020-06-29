@@ -19,4 +19,5 @@
 /ktor/Music
 /ktor/development/projects/**/node_modules
 /ktor/development/projects/**/target
+/ktor/development/projects/liferay-portal
 /ktor/temp
