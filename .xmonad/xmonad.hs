@@ -225,6 +225,7 @@ myManageHook = composeAll (
   , className =? "copyq" --> doFloat
   , className =? floatingConsole --> doFloat
   , className =? "microsoft teams - preview" --> doFloat
+  , className =? "Microsoft Teams - Preview" --> doFloat
   , className =? "Gimp"      --> doFloat
   , className =? "Vncviewer" --> doFloat
   , className =? "MainThrd" --> doFloat
