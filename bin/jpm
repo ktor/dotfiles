@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ "$1" == "install" ]; then
+  cd /home/ktor/development/tools/
+  wget $3
+  filename=$(basename "$3")
+  rm blade-cli.jar
+  ln -s $filename blade-cli.jar
+fi

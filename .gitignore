@@ -5,7 +5,12 @@
 !.bashrc
 !.config
 !.config/alacritty
+!.config/nixpkgs
+!.config/nixpkgs/config.nix
+!.config/nixpkgs/overlays
+!.config/nixpkgs/overlays/*
 !.config/alacritty/alacritty.yml
+!.config/bat/config
 !.config/procps
 !.config/procps/toprc
 !.config/terminator
@@ -56,3 +61,5 @@
 !bin/wallpaper
 !bin/weather.sh
 !bin/z.sh
+!bin/jpm
+!bin/enable-elasticsearch-in-docker.sh
