@@ -57,9 +57,6 @@ if [ $(command -v dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
-if [ $(command -v bat) ]; then
-  alias bat='bat --theme GitHub'
-fi
 if [ $(command -v highlight) ]; then
   # Pipe Highlight to less
   # export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
@@ -99,6 +96,9 @@ alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal ||
 # add ripgrep configuration
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
+# fzf loves ripgrep
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
 function check_gzip_compression {
   curl -s -I -H 'Accept-Encoding: gzip' $1 |grep -i "Content-Encoding"
 }
@@ -106,3 +106,10 @@ function check_gzip_compression {
 function check_compression {
   curl -s -I -H 'Accept-Encoding: br,gzip,deflate' $1 |grep -i "Content-Encoding"
 }
+
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+
