@@ -1,5 +1,7 @@
 # Ignore everything
 *
+!.npmrcs
+!.npmrcs/default
 !.asciidoc/
 !.asciidoc/asciidoc.conf
 !.bashrc
@@ -35,7 +37,6 @@
 !.mavenrc
 !.mitmproxy
 !.mitmproxy/config.yaml
-!.npmrc
 !.ripgreprc
 !.ssh
 !.ssh/config
