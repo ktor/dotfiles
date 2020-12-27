@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  printf "usage: vimurl <url> [out.txt]\n"
+  exit 1
+fi
+
+OUT=${2:-$(mktemp)}
+
+curl -sL "$1" | pandoc -f html -t plain - -o "$OUT"
+
+vim "$OUT"
