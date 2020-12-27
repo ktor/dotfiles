@@ -21,3 +21,4 @@
 /ktor/development/projects/**/target
 /ktor/development/projects/liferay-portal
 /ktor/temp
+/ktor/.config/BraveSoftware/Brave-Browser/GrShaderCache/GPUCache/*

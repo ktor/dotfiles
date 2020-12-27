@@ -51,16 +51,4 @@
 !LICENSE
 !README.md
 !bin
-!bin/clean_maven_local_repository.sh
-!bin/daily-home-backup.sh
-!bin/dotfiles-pull.sh
-!bin/intellij-idea
-!bin/monitor-*.sh
-!bin/nixos-patching-common.sh
-!bin/patch_gradle.sh
-!bin/patch_node.sh
-!bin/wallpaper
-!bin/weather.sh
-!bin/z.sh
-!bin/jpm
-!bin/enable-elasticsearch-in-docker.sh
+!bin/*

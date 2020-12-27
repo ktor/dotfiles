@@ -114,7 +114,7 @@ myComboMap =
     , ((myModMask .|. shiftMask , xK_Return), windows W.swapMaster)
     , ((myModMask               , xK_c), spawn floatingConsole)
     , ((myModMask               , xK_g), gotoMenu)
-    , ((myModMask               , xK_p), spawn "j4-dmenu-desktop --dmenu=\"(cat ; (stest -flx $(echo $PATH | tr : ' ') | sort -u)) | dmenu\"")
+    , ((myModMask               , xK_p), spawn "/home/ktor/bin/menu.sh")
     ]
 
 --------------------------------------------------------------------------------
