@@ -123,8 +123,9 @@ myComboMap =
 
 myShortcutKeyMap :: [((KeyMask, KeySym), X ())]
 myShortcutKeyMap =
-           [ ((0, xK_Print), spawn "shutter -s")
-           , ((controlMask, 0x60), spawn "copyq toggle") -- CTRL-`
+           [ 
+           ((controlMask, 0x60), spawn "copyq toggle") -- CTRL-`
+           -- , ((0, xK_Print), spawn "shutter -s")
 
            , ((mod4Mask .|. controlMask, xK_s), spawn "alock & (sleep 1 && systemctl suspend)")
            , ((mod4Mask .|. controlMask, xK_l), spawn "alock")
@@ -226,6 +227,7 @@ myManageHook = composeAll (
   , className =? floatingConsole --> doFloat
   , className =? "microsoft teams - preview" --> doFloat
   , className =? "Microsoft Teams - Preview" --> doFloat
+  , resource =? "Calendar" --> doFloat
   , className =? "Gimp"      --> doFloat
   , className =? "Vncviewer" --> doFloat
   , className =? "MainThrd" --> doFloat

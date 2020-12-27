@@ -1,12 +1,15 @@
 # path
+
+EDITOR="vim"
+
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.npm-packages/bin:$PATH"
-export PATH="$HOME/development/maven/apache-maven-3.6.3/bin:$PATH"
 export PATH="$HOME/.local/share/git-plus/:$PATH"
+export PATH="$HOME/jpm/bin/:$PATH"
 
-EDITOR="vim"
+export WS="$HOME/development/projects/o2/portal/liferay7-poc/workspace/bundles/osgi/modules"
 
 # history
 export HISTFILESIZE='infinity'
@@ -89,6 +92,8 @@ alias bc='bcompare'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
 
 # run ssh agent
 # eval `ssh-agent -s`
