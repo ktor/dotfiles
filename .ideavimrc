@@ -51,6 +51,4 @@ set multiple-cursors            " enable multiple cursors from version 0.50
 set surround
 
 "" integrate with system clipboard
-set clipboard+=unnamedplus
 set clipboard+=unnamed
-set clipboard+=ideaput
