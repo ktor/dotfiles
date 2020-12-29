@@ -46,7 +46,7 @@ if [ -n "$SSH_CLIENT" ]; then
   fi
 fi
 __red="1;31m"
-PS1='\n$(ret=$?; test $ret -ne 0 && printf "\[\e[$__red\]$ret\[\e[0m\] ")\[\e[$__prompt_color\]\w$(__git_ps1 " [%s]")\[\e[0m\]\n$ '
+PS1='\n$(ret=$?; test $ret -ne 0 && printf "\[\e[$__red\]$ret\[\e[0m\] ")\[\e[$__prompt_color\]\w$(__git_ps1 " [%s]")\[\e[0m\]\n> '
 
 # enable color support of ls and also add handy aliases
 if [ $(command -v dircolors) ]; then
