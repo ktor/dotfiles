@@ -32,6 +32,23 @@ fi
 source ~/bin/z.sh
 
 # prompt
+icon_directory="📁"
+icon_start="┌"
+icon_end="└${SHELL_NAME}❯ "
+icon_branch="🌿"
+icon_fail="↳ ⛈"
+
+function normal {
+  printf "\e[0m"
+}
+
+function bold {
+  printf "\e[1m"
+}
+function red {
+  printf "\e[1;31m"
+}
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 __prompt_color="1;32m"
 # Alternate color for hostname if the generated color clashes with prompt color
@@ -45,8 +62,7 @@ if [ -n "$SSH_CLIENT" ]; then
     __hostnamecolor="$__alternate_color"
   fi
 fi
-__red="1;31m"
-PS1='$(ret=$?; test $ret -ne 0 && printf "\[\e[$__red\]$ret\[\e[0m\] ")\[\e[$__prompt_color\]\w$(__git_ps1 " [%s]")\[\e[0m\]\n$SHELL_NAME\e[1m\e[$__red\]> \e[0m'
+PS1='${icon_start}$(ret=$?; test $ret -ne 0 && red && printf " $icon_fail $ret" && normal) ${icon_directory} \w$(__git_ps1 " ${icon_branch} %s")\n${icon_end}'
 
 # enable color support of ls and also add handy aliases
 if [ $(command -v dircolors) ]; then
