@@ -2,3 +2,4 @@ python=python
 unsafe-perm=true
 strict-ssl=false
 prefix=/home/ktor/.npm-packages
+ignore-scripts=true
