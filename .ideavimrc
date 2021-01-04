@@ -52,3 +52,8 @@ set surround
 
 "" integrate with system clipboard
 set clipboard+=unnamed
+
+" toggle hybrid line numbers
+set number! relativenumber!
+set nu! rnu!
+set number relativenumber
