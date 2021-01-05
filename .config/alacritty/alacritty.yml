@@ -253,6 +253,7 @@ background_opacity: 1.0
 # All available `mods` and `action` values are documented in the key binding
 # section.
 mouse_bindings:
+  - { mouse: Left, action: Copy }
   - { mouse: Right, action: PasteSelection }
 
 mouse:
@@ -473,7 +474,7 @@ key_bindings:
   - { key: V,   mods: Control|Shift,         action: PasteSelection   }
   # (Windows/Linux only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
-  #- { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: C,        mods: Control, action: Copy             }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
@@ -494,8 +495,8 @@ key_bindings:
   #- { key: Q,      mods: Command, action: Quit             }
   #- { key: W,      mods: Command, action: Quit             }
 
-  # { key: Paste,                   action: Paste                            }
-  - { key: Copy,                    action: Copy                             }
+  # - { key: Paste,                   action: Paste                            }
+  # - { key: Copy,                    action: Copy                             }
   - { key: L,        mods: Control, action: ClearLogNotice                   }
   - { key: L,        mods: Control, chars: "\x0c"                            }
   - { key: Home,     mods: Alt,     chars: "\x1b[1;3H"                       }
