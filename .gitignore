@@ -49,6 +49,6 @@
 !.xmonad
 !.xmonad/xmonad.hs
 !LICENSE
-!README.md
+!README.adoc
 !bin
 !bin/*

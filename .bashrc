@@ -34,9 +34,10 @@ source ~/bin/z.sh
 # prompt
 icon_directory="📁"
 icon_start="┌"
-icon_end="└${SHELL_NAME}❯ "
+icon_prompt_arrow="➤"
+prompt_bottom_line="$(if [ ! -z "$SHELL_NAME" ]; then printf "└🐚 ${SHELL_NAME}${icon_prompt_arrow} "; else printf "└${icon_prompt_arrow} "; fi)"
 icon_branch="🌿"
-icon_fail="↳ ⛈"
+icon_fail="⛈"
 
 function normal {
   printf "\e[0m"
@@ -62,7 +63,7 @@ if [ -n "$SSH_CLIENT" ]; then
     __hostnamecolor="$__alternate_color"
   fi
 fi
-PS1='${icon_start}$(ret=$?; test $ret -ne 0 && red && printf " $icon_fail $ret" && normal) ${icon_directory} \w$(__git_ps1 " ${icon_branch} %s")\n${icon_end}'
+PS1='${icon_start}$(ret=$?; test $ret -ne 0 && red && printf " $icon_fail $ret" && normal)${icon_directory} \w$(__git_ps1 " ${icon_branch} %s")\n${prompt_bottom_line}'
 
 # enable color support of ls and also add handy aliases
 if [ $(command -v dircolors) ]; then
@@ -97,8 +98,8 @@ alias ....='cd ../../../'
 alias .....='cd ../../../../'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
+alias ll='ls -CFal'
+alias la='ls -CFA'
 alias l='ls -CF'
 
 # git aliases
