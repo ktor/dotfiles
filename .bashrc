@@ -96,11 +96,18 @@ alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
+alias e='exit'
 
 # some more ls aliases
-alias ll='ls -CFal'
-alias la='ls -CFA'
-alias l='ls -CF'
+# alias ll='ls -CFl'
+# alias lla='ls -CFal'
+# alias l='ls -CF'
+# alias la='ls -CFA'
+alias exadefault='exa --git --header --grid --group'
+alias ll='exadefault -l'
+alias lla='exadefault -al'
+alias l='exadefault'
+alias la='exadefault -a'
 
 # git aliases
 alias commit-merge='git commit -e -F "$(git rev-parse --git-dir)/MERGE_MSG"'
@@ -134,4 +141,8 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
+# completions
+complete -W "convert create deploy extension gw help open samples server sh update upgradeProps version watch" blade
 
+
+# eval "$(starship init bash)" starship prompt test
