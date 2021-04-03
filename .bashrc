@@ -10,15 +10,15 @@ export PATH="$HOME/.local/share/git-plus/:$PATH"
 export PATH="$HOME/jpm/bin/:$PATH"
 
 export WS="$HOME/development/projects/o2/portal/liferay7-poc/workspace/bundles/osgi/modules"
+export LUK="$HOME/development/projects/lukreo/liferay/bundles/osgi/modules"
 
 # history
-export HISTFILESIZE='infinity'
-export HISTSIZE='infinity'
-export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE='ls:bg:fg:history:ps:top:cd:exit:man'
+HISTSIZE=1000000
+HISTFILESIZE=$HISTSIZE
+HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-export HH_CONFIG=hicolor         # get more colors
-export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+
 # if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
 if [[ $- =~ .*i.* ]]; then bind '"\C-r": "hstr -- \C-j"'; fi
 # if this is interactive shell, then bind 'kill last command' to Ctrl-x k
@@ -32,6 +32,7 @@ fi
 source ~/bin/z.sh
 
 # prompt
+export HH_CONFIG=hicolor         # get more colors
 icon_directory="📁"
 icon_start="┌"
 icon_prompt_arrow="➤"
@@ -144,5 +145,3 @@ fi
 # completions
 complete -W "convert create deploy extension gw help open samples server sh update upgradeProps version watch" blade
 
-
-# eval "$(starship init bash)" starship prompt test
