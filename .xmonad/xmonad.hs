@@ -2,21 +2,24 @@
 {-# LANGUAGE PackageImports #-}
 
 import "base" Data.List   (delete)
+import "xmonad-contrib" XMonad.Hooks.EwmhDesktops    (fullscreenEventHook)
+import "xmonad-contrib" XMonad.Layout.SimpleFloat (simpleFloat)
+import Data.Default
 import XMonad
+import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.UpdatePointer
 import XMonad.Actions.Warp (warpToScreen)
 import XMonad.Actions.WindowBringer (gotoMenu)
 import XMonad.Config.Gnome
 import XMonad.Core (X ,withDisplay ,io)
-import XMonad.Util.EZConfig(removeKeys, additionalKeys)
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Layout.NoBorders
-import qualified XMonad.StackSet as W
+import XMonad.Util.EZConfig(removeKeys, additionalKeys)
 import XMonad.Util.SpawnOnce
-import "xmonad-contrib" XMonad.Layout.SimpleFloat (simpleFloat)
-import "xmonad-contrib" XMonad.Hooks.EwmhDesktops    (fullscreenEventHook)
+import qualified XMonad.StackSet as W
 
 import Graphics.X11.Xinerama (getScreenInfo)
 import Graphics.X11.Xlib.Types (Rectangle)
@@ -49,7 +52,8 @@ floatingConsole =  myTerminal
 
 myLogHook :: X ()
 myLogHook = fadeInactiveLogHook fadeAmount
-    where fadeAmount = 1
+          >> updatePointer (0.5, 0.5) (0, 0)
+          where fadeAmount = 0.95
 
 main :: IO ()
 main = do
@@ -84,7 +88,8 @@ myWorkspaceKeyMap :: [((KeyMask, KeySym), X ())]
 myWorkspaceKeyMap =
     [((m .|. myModMask, k), windows $ f i)
         | (i, k) <- zip myWorkspaces myWorkspaceKeys
-        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+        ]
 
 defaultScreenKeyMap :: [(KeyMask, KeySym)]
 defaultScreenKeyMap =
@@ -92,13 +97,9 @@ defaultScreenKeyMap =
 
 myScreenKeyMap :: [((KeyMask, KeySym), X ())]
 myScreenKeyMap =
-    [ ( (m .|. myModMask, key), do
-        ws <- screenWorkspace sc
-        whenJust ws (windows . f)
-        warpToScreen sc 0.618 0.618 -- additional mouse operation
-      )
+    [ ( (m .|. myModMask, key), f sc)        
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+        , (f, m) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
     ]
 
 defaultComboMap :: [(KeyMask, KeySym)]
@@ -116,6 +117,8 @@ myComboMap =
     , ((myModMask               , xK_g), gotoMenu)
     , ((myModMask               , xK_p), spawn "/home/ktor/bin/menu.sh")
     ]
+
+
 
 --------------------------------------------------------------------------------
 -- Additional Shortcuts                                                       --
