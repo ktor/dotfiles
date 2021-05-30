@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-xrandr --output eDP-1 --auto --primary
+xrandr --output eDP-1-1 --auto --primary
 restart-apps.sh
