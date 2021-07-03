@@ -41,7 +41,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myTerminal :: String
-myTerminal = "alacritty"
+myTerminal = "nvidia-offload alacritty"
 
 fconsoleName :: String
 fconsoleName = "fconsole"
