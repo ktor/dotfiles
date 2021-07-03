@@ -17,7 +17,11 @@ HISTSIZE=1000000
 HISTFILESIZE=$HISTSIZE
 HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+function historymerge {
+    history -n; history -w; history -c; history -r;
+}
+trap historymerge EXIT
+PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
 
 # if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
 if [[ $- =~ .*i.* ]]; then bind '"\C-r": "hstr -- \C-j"'; fi
@@ -145,3 +149,7 @@ fi
 # completions
 complete -W "convert create deploy extension gw help open samples server sh update upgradeProps version watch" blade
 
+# direnv hook https://direnv.net/docs/hook.html
+if [ $(command -v direnv) ]; then
+  eval "$(direnv hook bash)"
+fi
