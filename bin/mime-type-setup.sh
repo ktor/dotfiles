@@ -7,4 +7,5 @@ xdg-mime default writer.desktop application/vnd.openxmlformats-officedocument.wo
 xdg-mime default calc.desktop application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 xdg-mime default impress.desktop application/vnd.openxmlformats-officedocument.presentationml.presentation
 xdg-mime default freemind.desktop text/x-troff-mm
+xdg-mime default okular.desktop application/pdf
 
