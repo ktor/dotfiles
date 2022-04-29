@@ -16,9 +16,11 @@ import XMonad.Core (X ,withDisplay ,io)
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName (setWMName)
+import XMonad.Hooks.EwmhDesktops(ewmh)
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig(removeKeys, additionalKeys)
 import XMonad.Util.SpawnOnce
+import XMonad.Util.Run(spawnPipe)
 import qualified XMonad.StackSet as W
 
 import Graphics.X11.Xinerama (getScreenInfo)
@@ -57,7 +59,7 @@ myLogHook = fadeInactiveLogHook fadeAmount
 
 main :: IO ()
 main = do
-    xmonad $ def {
+    xmonad $ ewmh $ def {
          terminal = myTerminal
        , borderWidth = 1
        , modMask = myModMask
@@ -128,7 +130,7 @@ myShortcutKeyMap :: [((KeyMask, KeySym), X ())]
 myShortcutKeyMap =
            [ 
            ((controlMask, 0x60), spawn "copyq toggle") -- CTRL-`
-           -- , ((0, xK_Print), spawn "shutter -s")
+           , ((0, xK_Print), spawn "shutter -s")
 
            , ((mod4Mask .|. controlMask, xK_s), spawn "alock & (sleep 1 && systemctl suspend)")
            , ((mod4Mask .|. controlMask, xK_l), spawn "alock")
@@ -205,7 +207,7 @@ xdisplays = withDisplay $ io . getScreenInfo
 
 myStartupHook = do
   rects <- xdisplays
-  spawnOnce "xmobar"
+  spawnPipe $ "xmobar"
   spawnOnce "stalonetray"
   setWMName "LG3D" -- make Java GUI applications work
   spawnOnce "nm-applet"
