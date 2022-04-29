@@ -1,2 +1,1 @@
-MAVEN_OPTS="-Xmx512m -Djavax.net.ssl.trustStore=/home/ktor/.keystore \
-                     -Djavax.net.ssl.trustStorePassword=123456"
+MAVEN_OPTS="-Xmx6g -XX:MaxMetaspaceSize=2g -XX:ReservedCodeCacheSize=2g -Djavax.net.ssl.trustStore=/home/ktor/.keystore -Djavax.net.ssl.trustStorePassword=123456"
