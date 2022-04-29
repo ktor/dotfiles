@@ -8,6 +8,7 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH="$HOME/.local/share/git-plus/:$PATH"
 export PATH="$HOME/jpm/bin/:$PATH"
+export PATH="$HOME/development/projects/o2/tools/adhoc-scripts/releases/LFR7/:$PATH"
 
 export WS="$HOME/development/projects/o2/portal/liferay7-poc/workspace/bundles/osgi/modules"
 export LUK="$HOME/development/projects/lukreo/liferay/bundles/osgi/modules"
@@ -122,7 +123,8 @@ alias bc='bcompare'
 #   sleep 10; alert
 alias alert='notify-send --urgency=critical -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
+alias fzfd='cd $(fd --type d --no-ignore --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
+alias fzfdi='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
 
 # run ssh agent
 # eval `ssh-agent -s`
