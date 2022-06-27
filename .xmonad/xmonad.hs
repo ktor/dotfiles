@@ -2,15 +2,15 @@
 {-# LANGUAGE PackageImports #-}
 
 import "base" Data.List   (delete)
-import "xmonad-contrib" XMonad.Hooks.EwmhDesktops    (fullscreenEventHook)
+import "xmonad-contrib" XMonad.Hooks.EwmhDesktops    (ewmhFullscreen)
 import "xmonad-contrib" XMonad.Layout.SimpleFloat (simpleFloat)
-import Data.Default
 import XMonad
 import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.SpawnOn
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.Warp (warpToScreen)
 import XMonad.Actions.WindowBringer (gotoMenu)
+import XMonad.Config
 import XMonad.Config.Gnome
 import XMonad.Core (X ,withDisplay ,io)
 import XMonad.Hooks.FadeInactive
@@ -59,12 +59,11 @@ myLogHook = fadeInactiveLogHook fadeAmount
 
 main :: IO ()
 main = do
-    xmonad $ ewmh $ def {
+    xmonad $ ewmhFullscreen $ ewmh $ docks $ def {
          terminal = myTerminal
        , borderWidth = 1
        , modMask = myModMask
        , workspaces = myWorkspaces
-       , handleEventHook = fullscreenEventHook <> docksEventHook
        , manageHook = myManageHook
        , logHook = myLogHook
        , layoutHook = smartBorders $ myLayoutHook
@@ -243,7 +242,7 @@ myManageHook = composeAll (
 -- Window Layout                                                              --
 --------------------------------------------------------------------------------
 
-myLayoutHook = lessBorders MyAmbiguity $ layoutHook defaultConfig ||| simpleFloat
+myLayoutHook = lessBorders MyAmbiguity $ layoutHook XMonad.Config.def ||| simpleFloat
 
 data MyAmbiguity = MyAmbiguity deriving (Read, Show)
 
