@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+IMAGE="claude-run"
+DOCKERFILE="$SCRIPT_DIR/Dockerfile.claude-sandbox"
+
+build_image() {
+    echo "Building $IMAGE image..." >&2
+    docker build -t "$IMAGE" -f "$DOCKERFILE" "$SCRIPT_DIR"
+}
+
+if [[ "${1:-}" == "--build" ]]; then
+    shift
+    build_image
+elif ! docker image inspect "$IMAGE" &>/dev/null; then
+    build_image
+fi
+
+CONTAINER_HOME=/home/sandbox
+MOUNTS=(-v "$(pwd):/workspace" -v "$HOME/.claude:$CONTAINER_HOME/.claude")
+
+if [[ "${1:-}" == "creds" ]]; then
+    shift
+else
+    # Shadow .credentials.json so each container authenticates independently
+    EMPTY_CREDS=$(mktemp)
+    trap "rm -f '$EMPTY_CREDS'" EXIT
+    MOUNTS+=(-v "$EMPTY_CREDS:$CONTAINER_HOME/.claude/.credentials.json")
+fi
+
+# Forward git identity and SSH if available
+[[ -f "$HOME/.gitconfig" ]] && MOUNTS+=(-v "$HOME/.gitconfig:$CONTAINER_HOME/.gitconfig:ro")
+[[ -d "$HOME/.ssh" ]]       && MOUNTS+=(-v "$HOME/.ssh:$CONTAINER_HOME/.ssh:ro")
+
+ENV_VARS=(-e "HOME=$CONTAINER_HOME")
+[[ -n "${GITHUB_TOKEN:-}" ]] && ENV_VARS+=(-e "GITHUB_TOKEN=$GITHUB_TOKEN")
+
+exec docker run --rm -it \
+    --user "$(id -u):$(id -g)" \
+    "${MOUNTS[@]}" \
+    "${ENV_VARS[@]}" \
+    -w /workspace \
+    "$IMAGE" "$@"
