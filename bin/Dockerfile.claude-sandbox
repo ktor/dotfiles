@@ -1,0 +1,48 @@
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    wget \
+    jq \
+    ripgrep \
+    fd-find \
+    python3 \
+    python3-pip \
+    python3-venv \
+    ca-certificates \
+    gnupg \
+    unzip \
+    xz-utils \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+
+# Node.js 22
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# GitHub CLI
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+    | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+    | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install -y gh \
+    && rm -rf /var/lib/apt/lists/*
+
+# Claude Code CLI installed into a world-writable npm prefix so that the
+# container's runtime user (mapped to the host UID/GID, not root) can
+# auto-update it in a running session without "no write permission to npm prefix".
+ENV NPM_CONFIG_PREFIX=/usr/local/npm-global
+ENV PATH=/usr/local/npm-global/bin:$PATH
+RUN mkdir -p /usr/local/npm-global \
+    && npm install -g @anthropic-ai/claude-code \
+    && chmod -R a+rwX /usr/local/npm-global
+
+RUN mkdir -p /home/sandbox && chmod 777 /home/sandbox
+
+WORKDIR /workspace
+
+ENTRYPOINT ["claude"]
